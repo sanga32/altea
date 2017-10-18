@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:core="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Login</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:dataTable value="#{listeLivres.livres}" var="livre"
+			rowClasses="row1,row2" headerClass="heading" styleClass="dataTable">
+			<h:column>
+				<core:facet name="header">
+					<core:verbatim>Ref</core:verbatim>
+				</core:facet>
+				<h:outputText value="#{livre.id}" />
+			</h:column>
+
+			<h:column>
+				<core:facet name="header">
+					<core:verbatim>Titre</core:verbatim>
+				</core:facet>
+				<h:outputText value="#{livre.titre}" />
+			</h:column>
+
+			<h:column>
+				<core:facet name="header">
+					<core:verbatim>Auteur</core:verbatim>
+				</core:facet>
+				<h:outputText value="#{livre.auteur}" />
+			</h:column>
+
+			<h:column>
+				<core:facet name="header">
+					<core:verbatim>Résumé</core:verbatim>
+				</core:facet>
+				<h:outputText value="#{livre.resume}" />
+			</h:column>
+
+			<h:column rendered="#{login.personne.droitImage}">
+				<core:facet name="header">
+					<core:verbatim>Image</core:verbatim>
+				</core:facet>
+				<h:graphicImage value="#{livre.image}" />
+			</h:column>
+
+			<h:column>
+				<h:selectBooleanCheckbox value="#{listeLivres.checked[livre.id]}" />
+			</h:column>
+
+
+		</h:dataTable>
+		<h:commandButton value="Emprunter les livres"
+			action="#{listeLivres.emprunterLivres}">
+			<core:setPropertyActionListener target="#{listeLivres.login}"
+				value="#{login.login}" />
+		</h:commandButton>
+	</h:form>
+</h:body>
+</html>

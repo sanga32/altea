@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:core="http://java.sun.com/jsf/core"
+      >
+      
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+    	<core:view>
+		<h:form>
+			<h:outputText>Login : </h:outputText>
+			<h:inputText value="#{login.login}"></h:inputText>
+			<br/>
+			<h:outputText>Mot de passe : </h:outputText>
+			<h:inputSecret value="#{login.password}"></h:inputSecret>
+			<br/>
+			<h:commandButton value="Connexion" action="#{login.validate(login.login,login.password)}"></h:commandButton>
+		</h:form>
+	</core:view>
+    </h:body>
+</html>

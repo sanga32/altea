@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:core="http://java.sun.com/jsf/core"
+	xmlns:html="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Inscription</title>
+</head>
+<body>
+	<html:form>
+		<html:outputText value="Nom :">Nom : </html:outputText>
+		<html:inputText value="#{inscription.nom}"></html:inputText>
+		<br />
+		<html:outputText value="Prénom :">Prénom : </html:outputText>
+		<html:inputText value="#{inscription.prenom}"></html:inputText>
+		<br />
+		<html:outputText value="Date de naissance : ">Date de naissance : </html:outputText>
+		
+		<br />
+		<html:inputText value="#{inscription.dateDeNaissance}" id="date">
+			<core:convertDateTime type="date" dateStyle="short" />
+		</html:inputText>
+		<html:commandButton value = "Show Age">
+            <core:ajax execute = "date" render = "outputMessage" />
+         </html:commandButton>
+		<br />
+		<html:outputText value="Age : " id="age">Age : </html:outputText>
+		<html:outputText id = "outputMessage"
+            value = "#{inscription.age}"
+         />
+         <core:ajax event="click" execute="@this" render="age"/>
+		<br />
+		<html:outputText value="Login : " >Login : </html:outputText>
+		<html:inputText id="checkLogin" value="#{inscription.login}">
+			<core:validator validatorId="loginValidator" />
+		</html:inputText>
+		<br />
+		<html:outputText value="Civilité : ">Civilité : </html:outputText>
+		<html:selectOneRadio value="#{inscription.civilite}">
+			<core:selectItem itemValue="1" itemLabel="Mademoiselle" />
+			<core:selectItem itemValue="2" itemLabel="Madame" />
+			<core:selectItem itemValue="3" itemLabel="Monsieur" />
+		</html:selectOneRadio>
+		<br />
+		<html:outputText value="Mot de passe :">Mot de passe : </html:outputText>
+		<html:inputSecret value="#{inscription.motDePasse}"></html:inputSecret>
+		<br />
+		<html:outputText value="Droit à l'image :">Droit à l'image : </html:outputText>
+		<html:selectBooleanCheckbox value="#{inscription.droitImage}" />
+		<br />
+		<html:commandButton value="S'inscrire" action="#{inscription.signUp}"></html:commandButton>
+		<html:commandButton value="Annuler (sans immediate)"
+			action="login" />
+		<html:commandButton value="Annuler (avec immediate)"
+			action="login" immediate="true" />
+	</html:form>
+</body>
+</html>
